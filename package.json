@@ -1,0 +1,39 @@
+{
+  "name": "prato-consciente-demo",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Protótipo interativo da proposta Prato Consciente como ampliação do Prato Aberto (demonstração para apresentação).",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "typecheck": "tsc -b",
+    "lint": "oxlint",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@fontsource-variable/league-spartan": "^5.3.0",
+    "@fontsource-variable/oswald": "^5.3.0",
+    "@fontsource/anton": "^5.3.0",
+    "@fontsource/montserrat": "^5.3.0",
+    "@fontsource/roboto": "^5.3.0",
+    "@fontsource/satisfy": "^5.3.0",
+    "@fontsource/varela-round": "^5.3.0",
+    "lucide-react": "^1.56.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "react-router": "^7.18.4",
+    "zustand": "^5.0.15"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^24.19.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "oxlint": "^1.88.0",
+    "tailwindcss": "^4.3.3",
+    "typescript": "~6.0.2",
+    "vite": "^8.3.4"
+  }
+}

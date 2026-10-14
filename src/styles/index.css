@@ -1,0 +1,252 @@
+@import 'tailwindcss';
+
+/* ------------------------------------------------------------------ */
+/* Tokens                                                              */
+/* ------------------------------------------------------------------ */
+@theme {
+  /* Tipografia */
+  --font-roboto: 'Roboto', system-ui, 'Segoe UI', Arial, sans-serif;
+  --font-montserrat: 'Montserrat', 'Roboto', system-ui, sans-serif;
+  --font-varela: 'Varela Round', 'Roboto', system-ui, sans-serif;
+  --font-script: 'Satisfy', 'Segoe Script', cursive;
+  --font-anton: 'Anton', 'Oswald Variable', Impact, sans-serif;
+  --font-oswald: 'Oswald Variable', 'Anton', sans-serif;
+  --font-spartan: 'League Spartan Variable', 'Roboto', system-ui, sans-serif;
+
+  /* Prato Aberto — cores amostradas das capturas (slides 11 a 15) */
+  --color-pa-purple: #8134b3;
+  --color-pa-purple-deep: #701baa;
+  --color-pa-purple-light: #9657bf;
+  --color-pa-violet: #9468ac;
+  --color-pa-violet-soft: #e5d9ee;
+  --color-pa-blue: #2881bb;
+  --color-pa-blue-dark: #1c6baa;
+  --color-pa-link: #039be5;
+  --color-pa-header: #f4f4f7;
+  --color-pa-body: #e9e8ee;
+  --color-pa-line: #e0e0e0;
+  --color-pa-text: #3a3a3a;
+  --color-pa-muted: #5c5c5c;
+  --color-pa-marker: #b14aba;
+  --color-pa-button: #6a1b9a;
+  --color-pa-error: #c62828;
+  --color-pa-success: #2e7d32;
+
+  /* Prato Consciente — identidade da apresentação */
+  --color-pc-purple: #402d5d;
+  --color-pc-purple-soft: #efe9f6;
+  --color-pc-green: #17362e;
+  --color-pc-green-mid: #295748;
+  --color-pc-green-2: #234e40;
+  --color-pc-cream: #f7f5eb;
+  --color-pc-soft: #e2ebdb;
+  --color-pc-sage: #bacca6;
+  --color-pc-tan: #cc995d;
+  --color-pc-tan-soft: #f6ecdc;
+  --color-pc-ink: #29332e;
+
+  --animate-pulse-ring: pulse-ring 1.8s ease-out infinite;
+  --animate-nudge: nudge 0.42s ease-in-out;
+  --animate-fade-up: fade-up 0.28s ease-out both;
+  --animate-loading-bar: loading-bar 0.9s ease-in-out infinite;
+
+  @keyframes loading-bar {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(320%);
+    }
+  }
+
+  @keyframes pulse-ring {
+    0% {
+      box-shadow: 0 0 0 0 rgb(204 153 93 / 0.75);
+    }
+    70% {
+      box-shadow: 0 0 0 12px rgb(204 153 93 / 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgb(204 153 93 / 0);
+    }
+  }
+  @keyframes nudge {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(-6px);
+    }
+    75% {
+      transform: translateX(6px);
+    }
+  }
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Base                                                                */
+/* ------------------------------------------------------------------ */
+@layer base {
+  :root {
+    --shell-top: 40px;
+    color-scheme: light;
+  }
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: calc(var(--shell-top) + 12px);
+  }
+  body {
+    margin: 0;
+    background: #ffffff;
+    color: #1f1f1f;
+    font-family: var(--font-roboto);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  button {
+    cursor: pointer;
+  }
+  button:disabled,
+  button[aria-disabled='true'] {
+    cursor: not-allowed;
+  }
+  :focus-visible {
+    outline: 3px solid #cc995d;
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Prato Aberto (reconstrução fiel das capturas)                       */
+/* ------------------------------------------------------------------ */
+@layer components {
+  /* Degradê roxo do painel lateral (slide 11): mais claro embaixo à esquerda. */
+  .pa-purple {
+    background-color: var(--color-pa-purple);
+    background-image: var(--pa-pattern), linear-gradient(to top right, #9657bf 0%, #8538b5 48%, #701baa 100%);
+    background-size:
+      280px 280px,
+      100% 100%;
+    color: #fff;
+  }
+  /* Cabeçalho da escola (slides 13 a 15): mesmo padrão, escurecido na base. */
+  .pa-purple-header {
+    background-color: var(--color-pa-purple);
+    background-image:
+      linear-gradient(to bottom, rgb(40 6 70 / 0) 35%, rgb(52 12 86 / 0.78) 100%), var(--pa-pattern),
+      linear-gradient(to top right, #9657bf 0%, #8538b5 48%, #701baa 100%);
+    background-size:
+      100% 100%,
+      230px 230px,
+      100% 100%;
+    color: #fff;
+  }
+
+  .pa-find-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    height: 47px;
+    padding: 0 26px 0 22px;
+    border-radius: 2px;
+    background: var(--color-pa-blue);
+    color: #fff;
+    font-family: var(--font-roboto);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    box-shadow:
+      0 3px 0 0 var(--color-pa-blue-dark),
+      0 6px 12px rgb(20 10 40 / 0.28);
+    transition:
+      background-color 0.15s ease,
+      transform 0.15s ease;
+  }
+  .pa-find-button:hover {
+    background: #2f8fcc;
+  }
+  .pa-find-button:active {
+    transform: translateY(2px);
+    box-shadow:
+      0 1px 0 0 var(--color-pa-blue-dark),
+      0 3px 8px rgb(20 10 40 / 0.25);
+  }
+
+  .pa-link {
+    color: var(--color-pa-link);
+    font-family: var(--font-roboto);
+  }
+  .pa-link:hover {
+    text-decoration: underline;
+  }
+
+  /* Acordeão "Todas as idades" / "Prato Consciente" */
+  .pa-acc-header {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 16px;
+    min-height: 54px;
+    padding: 9px 20px 9px 21px;
+    background: var(--color-pa-header);
+    border-bottom: 1px solid var(--color-pa-line);
+    text-align: left;
+  }
+  .pa-acc-header:hover {
+    background: #efeff4;
+  }
+
+  /* Mapa ilustrativo */
+  .pa-map-layer {
+    transform-origin: 0 0;
+    transition: transform 0.75s cubic-bezier(0.22, 0.7, 0.2, 1);
+    will-change: transform;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Marcações "Já existe / Proposta / Simulação" (modo apresentação)    */
+/* ------------------------------------------------------------------ */
+.annotate [data-annot] {
+  outline: 2px dashed var(--annot-color);
+  outline-offset: -3px;
+}
+[data-annot='existente'] {
+  --annot-color: #295748;
+}
+[data-annot='proposta'] {
+  --annot-color: #6a1b9a;
+}
+[data-annot='simulacao'] {
+  --annot-color: #b07a35;
+}
+
+/* ------------------------------------------------------------------ */
+/* Utilidades                                                          */
+/* ------------------------------------------------------------------ */
+@utility scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: #c9c3d3 transparent;
+}
