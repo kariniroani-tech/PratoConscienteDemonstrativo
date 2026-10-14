@@ -100,54 +100,6 @@ fonte de 16 px (sem zoom automático no iPhone), áreas de toque maiores e nenhu
 O mapeamento completo entre slides e telas está em [`FIDELIDADE_SLIDES.md`](FIDELIDADE_SLIDES.md), e o roteiro de
 fala para a apresentação em [`ROTEIRO_APRESENTACAO.md`](ROTEIRO_APRESENTACAO.md).
 
-## Como rodar localmente
-
-Requer Node.js 20.19+ (ou 22.12+).
-
-```bash
-npm ci
-npm run dev
-```
-
-Depois, abra http://localhost:5173/PratoConscienteDemonstrativo/
-
-| Comando | O que faz |
-| --- | --- |
-| `npm run dev` | Servidor de desenvolvimento |
-| `npm run build` | Checagem de tipos + build de produção em `dist/` |
-| `npm run preview` | Serve o build de produção localmente |
-| `npm run lint` | Lint com oxlint |
-
-## Publicação no GitHub Pages
-
-O workflow [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) compila e publica o site a cada `push` na
-branch `main` (e também pode ser disparado manualmente em **Actions**).
-
-1. Em **Settings → Pages → Build and deployment**, escolha **Source: GitHub Actions** (uma única vez).
-2. Envie alterações para `main`; ao fim do workflow, o site fica em
-   `https://kariniroani-tech.github.io/PratoConscienteDemonstrativo/`.
-
-O `base` do Vite está em [`vite.config.ts`](vite.config.ts) com o nome do repositório
-(`/PratoConscienteDemonstrativo/`). Se o repositório for renomeado, ajuste `repositoryName` ou defina a variável
-`BASE_PATH`. As rotas usam `HashRouter` (`#/...`), então atualizar a página ou abrir um link direto nunca dá erro 404.
-
-## Estrutura
-
-```
-src/
-├── pages/                 Tela inicial, moldura do protótipo e “Da escuta à ação”
-├── components/
-│   ├── prato-aberto/      Telas reconstruídas do Prato Aberto (mapa, busca, calendário, cardápio)
-│   ├── prato-consciente/  A proposta: painel, formulário e confirmação
-│   ├── gestao/            Gráficos do painel demonstrativo
-│   ├── demo/              Barra da demonstração, ajuda, legendas e etiquetas
-│   └── ui/                Componentes genéricos (modal)
-├── tour/                  Tutorial interativo (etapas, estado, camada de destaque)
-├── data/                  Dados da demonstração, separados das telas
-├── store/                 Estado da simulação (Zustand, salvo no navegador)
-└── lib/                   Datas, textos e armazenamento seguro
-```
-
 ## Tecnologias
 
 React 19 · TypeScript · Vite · Tailwind CSS · React Router (HashRouter) · Zustand · Lucide · fontes empacotadas com
