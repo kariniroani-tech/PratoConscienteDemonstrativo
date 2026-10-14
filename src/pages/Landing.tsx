@@ -37,59 +37,62 @@ export function Landing() {
   }
 
   return (
-    <div className="min-h-dvh bg-pc-cream text-pc-ink">
-      {/* Capa — composição do slide 1 */}
-      <section className="grid min-h-dvh lg:grid-cols-[minmax(0,47fr)_minmax(0,53fr)]" aria-labelledby="titulo-demo">
-        <div className="relative h-56 overflow-hidden sm:h-72 lg:h-auto">
+    <div className="min-h-dvh overflow-x-clip bg-pc-cream text-pc-ink">
+      {/* Capa — composição do slide 1. No celular, foto baixa e botões logo após o título. */}
+      <section className="lg:grid lg:min-h-dvh lg:grid-cols-[minmax(0,47fr)_minmax(0,53fr)]" aria-labelledby="titulo-demo">
+        <div className="relative h-36 overflow-hidden sm:h-64 lg:h-auto">
           <img
             src={capa}
             alt="Crianças da educação infantil almoçando no refeitório da escola"
-            className="absolute inset-0 size-full object-cover object-[50%_35%]"
+            className="absolute inset-0 size-full object-cover object-[50%_32%]"
           />
         </div>
-        <div className="flex items-center justify-center bg-pc-purple px-4 py-8 sm:px-8 lg:py-12">
-          <div className="w-full max-w-[640px] rounded-[32px] bg-white px-6 py-8 shadow-[0_24px_60px_rgb(20_10_40/0.35)] sm:rounded-[48px] sm:px-12 sm:py-12">
-            <p className="font-spartan text-[13px] font-semibold uppercase tracking-[0.14em] text-pc-green-mid">
+        <div className="flex justify-center bg-pc-purple px-3 pb-6 sm:px-8 sm:py-10 lg:items-center lg:py-12">
+          <div className="relative z-10 -mt-7 w-full max-w-[640px] rounded-[28px] bg-white px-5 pb-6 pt-6 shadow-[0_24px_60px_rgb(20_10_40/0.35)] sm:mt-0 sm:rounded-[48px] sm:px-12 sm:py-12">
+            <p className="font-spartan text-[11.5px] font-semibold uppercase tracking-[0.14em] text-pc-green-mid sm:text-[13px]">
               Demonstração interativa · proposta conceitual
             </p>
-            <h1 id="titulo-demo" className="mt-4 font-oswald uppercase leading-[0.98] text-pc-green">
-              <span className="block text-[52px] font-bold sm:text-[68px]">Prato</span>
-              <span className="block text-[52px] font-light tracking-[0.01em] sm:text-[68px]">Consciente</span>
+            <h1 id="titulo-demo" className="mt-3 font-oswald uppercase leading-[0.98] text-pc-green sm:mt-4">
+              <span className="block text-[44px] font-bold sm:text-[68px]">Prato</span>
+              <span className="block text-[44px] font-light tracking-[0.01em] sm:text-[68px]">Consciente</span>
             </h1>
-            <div className="mt-6 h-1.5 w-40 rounded-full bg-pc-tan" aria-hidden="true" />
-            <p className="mt-6 font-spartan text-[21px] font-light leading-snug text-pc-ink sm:text-[24px]">
+            <div className="mt-4 h-1.5 w-32 rounded-full bg-pc-tan sm:mt-6 sm:w-40" aria-hidden="true" />
+            <p className="mt-4 font-spartan text-[18px] font-light leading-snug text-pc-ink sm:mt-6 sm:text-[24px]">
               Conectando famílias, estudantes e escolas a fim de diminuir o desperdício alimentar na rede municipal de
               ensino
             </p>
-            <p className="mt-5 font-roboto text-[15.5px] leading-relaxed text-[#4a524e]">
-              Você vai usar uma reconstrução do <strong className="font-medium">Prato Aberto</strong>, que já existe, e
-              ver onde entraria o <strong className="font-medium">Prato Consciente</strong>: um espaço para a família
-              compartilhar percepções sobre a alimentação escolar.
-            </p>
 
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <button
-                type="button"
-                onClick={startGuided}
-                className="group flex min-h-[54px] flex-1 items-center justify-center gap-2.5 rounded-full bg-pc-green px-6 font-spartan text-[17px] font-semibold text-pc-cream shadow-[0_8px_20px_rgb(23_54_46/0.3)] transition-colors hover:bg-pc-green-2"
-              >
-                <Play size={19} fill="currentColor" aria-hidden="true" />
-                Iniciar demonstração guiada
-              </button>
-              <button
-                type="button"
-                onClick={exploreFreely}
-                className="flex min-h-[54px] items-center justify-center gap-2 rounded-full border-2 border-pc-green px-6 font-spartan text-[17px] font-semibold text-pc-green transition-colors hover:bg-pc-soft"
-              >
-                <Compass size={19} aria-hidden="true" />
-                Explorar livremente
-              </button>
+            <div className="flex flex-col">
+              <p className="order-3 mt-5 font-roboto text-[15px] leading-relaxed text-[#4a524e] lg:order-1 lg:text-[15.5px]">
+                Você vai usar uma reconstrução do <strong className="font-medium">Prato Aberto</strong>, que já existe, e
+                ver onde entraria o <strong className="font-medium">Prato Consciente</strong>: um espaço para a família
+                compartilhar percepções sobre a alimentação escolar.
+              </p>
+              <div className="order-1 mt-6 flex flex-col gap-2.5 sm:flex-row sm:gap-3 lg:order-2 lg:mt-7">
+                <button
+                  type="button"
+                  onClick={startGuided}
+                  className="group flex min-h-[54px] flex-1 items-center justify-center gap-2.5 rounded-full bg-pc-green px-6 font-spartan text-[17px] font-semibold text-pc-cream shadow-[0_8px_20px_rgb(23_54_46/0.3)] transition-colors hover:bg-pc-green-2"
+                >
+                  <Play size={19} fill="currentColor" aria-hidden="true" />
+                  Iniciar demonstração guiada
+                </button>
+                <button
+                  type="button"
+                  onClick={exploreFreely}
+                  className="flex min-h-[50px] items-center justify-center gap-2 rounded-full border-2 border-pc-green px-6 font-spartan text-[17px] font-semibold text-pc-green transition-colors hover:bg-pc-soft sm:min-h-[54px]"
+                >
+                  <Compass size={19} aria-hidden="true" />
+                  Explorar livremente
+                </button>
+              </div>
+              <p className="order-2 mt-2.5 text-center font-roboto text-[13px] text-[#6b716e] sm:text-left lg:order-3">
+                Recomendado: a demonstração guiada leva de 3 a 5 minutos.
+              </p>
             </div>
-            <p className="mt-2.5 text-center font-roboto text-[13px] text-[#6b716e] sm:text-left">
-              Recomendado: a demonstração guiada leva de 3 a 5 minutos.
-            </p>
 
-            <div className="mt-6 rounded-2xl bg-pc-cream px-4 py-3.5">
+            {/* Recurso de quem apresenta: no celular fica no menu "Ajuda / Tutorial" das telas do protótipo. */}
+            <div className="mt-6 hidden rounded-2xl bg-pc-cream px-4 py-3.5 md:block">
               <Switch
                 checked={presentationMode}
                 onChange={setPresentationMode}
@@ -98,7 +101,7 @@ export function Landing() {
               />
             </div>
 
-            <div className="mt-7 border-t border-[#ebe7dc] pt-5 text-center font-spartan text-[14px] font-semibold leading-relaxed text-pc-green">
+            <div className="mt-6 border-t border-[#ebe7dc] pt-5 text-center font-spartan text-[13.5px] font-semibold leading-relaxed text-pc-green sm:mt-7 sm:text-[14px]">
               <p>São Paulo Plural: Incluindo Pessoas, Transformando o Serviço Público</p>
               <p className="font-medium">Proposta de Karini Roani · Secretaria Municipal da Educação</p>
             </div>

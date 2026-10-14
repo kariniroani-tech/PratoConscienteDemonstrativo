@@ -100,7 +100,8 @@ export function PcForm({ escola, data }: { escola: Escola; data: string }) {
             aria-invalid={Boolean(errors.classe)}
             aria-describedby={errors.classe ? 'pc-classe-erro' : undefined}
             className={cn(
-              'h-[44px] w-full appearance-none rounded-[4px] border bg-white pl-3.5 pr-10 font-roboto text-[15px] outline-none focus:ring-2',
+              // 16px no celular: abaixo disso o iPhone aplica zoom ao tocar no campo.
+              'h-[46px] w-full appearance-none rounded-[4px] border bg-white pl-3.5 pr-10 font-roboto text-[16px] outline-none focus:ring-2 sm:h-[44px] sm:text-[15px]',
               classe ? 'text-black' : 'text-[#757575]',
               errors.classe
                 ? 'border-pa-error focus:border-pa-error focus:ring-pa-error/20'
@@ -137,7 +138,7 @@ export function PcForm({ escola, data }: { escola: Escola; data: string }) {
         <textarea
           id="pc-relato"
           ref={relatoRef}
-          rows={6}
+          rows={4}
           maxLength={MAX_LENGTH}
           value={relato}
           onChange={(event) => {
@@ -148,7 +149,7 @@ export function PcForm({ escola, data }: { escola: Escola; data: string }) {
           aria-describedby={cn(errors.relato && 'pc-relato-erro', 'pc-relato-contador')}
           placeholder="Digite aqui o relato ou sugestão da família sobre o cardápio e a alimentação..."
           className={cn(
-            'mt-2 block min-h-[150px] w-full resize-y rounded-[4px] border bg-white px-3.5 py-3 font-roboto text-[15px] leading-relaxed text-black outline-none placeholder:text-[#5f5f5f] focus:ring-2',
+            'mt-2 block min-h-[112px] w-full resize-y rounded-[4px] border bg-white px-3.5 py-3 font-roboto text-[16px] leading-relaxed text-black outline-none placeholder:text-[#5f5f5f] focus:ring-2 sm:min-h-[150px] sm:text-[15px]',
             errors.relato
               ? 'border-pa-error focus:border-pa-error focus:ring-pa-error/20'
               : 'border-[#c4c4c4] focus:border-pa-button focus:ring-pa-button/25',
@@ -170,8 +171,9 @@ export function PcForm({ escola, data }: { escola: Escola; data: string }) {
 
         {examplesVisible ? (
           <DemoNote label="Exemplos fictícios · atalho da demonstração" className="mt-3">
-            <p className="mb-2">Toque em um exemplo para preencher o relato:</p>
-            <div className="flex flex-wrap gap-2">
+            <p className="mb-2 hidden sm:block">Toque em um exemplo para preencher o relato:</p>
+            {/* Celular: exemplos numa faixa rolável, para o botão "Enviar Relato" continuar à vista. */}
+            <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-0.5 scrollbar-thin sm:flex-wrap sm:overflow-visible">
               {EXEMPLOS_RELATO.map((exemplo) => (
                 <button
                   key={exemplo.rotulo}
@@ -179,9 +181,10 @@ export function PcForm({ escola, data }: { escola: Escola; data: string }) {
                   onClick={() => {
                     setRelato(exemplo.texto)
                     setErrors((current) => ({ ...current, relato: undefined }))
-                    relatoRef.current?.focus()
+                    // Com mouse, devolve o foco ao campo; no celular, evita abrir o teclado à toa.
+                    if (window.matchMedia?.('(pointer: fine)').matches) relatoRef.current?.focus()
                   }}
-                  className="rounded-full border border-[#d8bf98] bg-white px-3 py-1.5 text-[13px] text-[#5b4527] hover:border-pa-button hover:text-pa-button"
+                  className="min-h-[36px] shrink-0 whitespace-nowrap rounded-full border border-[#d8bf98] bg-white px-3 py-1.5 text-[13.5px] text-[#5b4527] hover:border-pa-button hover:text-pa-button"
                 >
                   {exemplo.rotulo}
                 </button>
@@ -202,7 +205,7 @@ export function PcForm({ escola, data }: { escola: Escola; data: string }) {
           type="submit"
           data-tour-submit=""
           disabled={submitting}
-          className="mt-5 flex h-[42px] w-full items-center justify-center gap-2 rounded-[3px] bg-pa-button font-roboto text-[15px] font-medium text-white shadow-sm transition-colors hover:bg-[#5c1287] disabled:opacity-75"
+          className="mt-5 flex h-[48px] w-full items-center justify-center gap-2 rounded-[3px] bg-pa-button font-roboto text-[16px] font-medium text-white shadow-sm transition-colors hover:bg-[#5c1287] disabled:opacity-75 sm:h-[42px] sm:text-[15px]"
         >
           {submitting ? (
             <>

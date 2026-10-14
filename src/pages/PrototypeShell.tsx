@@ -17,7 +17,8 @@ export function PrototypeShell() {
   }, [presentationMode])
 
   return (
-    <div className={cn('min-h-dvh bg-white', annotations && 'annotate')}>
+    // overflow-x-clip: nada pode alargar a página no celular (sem criar rolagem horizontal).
+    <div className={cn('min-h-dvh overflow-x-clip bg-white', annotations && 'annotate')}>
       <button
         type="button"
         onClick={() => document.getElementById('conteudo')?.focus()}

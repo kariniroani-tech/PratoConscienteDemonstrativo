@@ -51,13 +51,16 @@ export function HelpButton() {
   return (
     <div
       ref={containerRef}
-      className={cn('fixed bottom-4 right-4 z-[85] sm:bottom-5 sm:right-5', tour.active && 'max-md:hidden')}
+      className={cn(
+        'fixed bottom-[max(12px,env(safe-area-inset-bottom))] right-3 z-[85] sm:bottom-5 sm:right-5',
+        tour.active && 'max-md:hidden',
+      )}
     >
       {open && (
         <div
           role="dialog"
           aria-label="Ajuda e tutorial"
-          className="absolute bottom-[58px] right-0 w-[min(330px,calc(100vw-32px))] animate-fade-up rounded-2xl bg-white p-2 shadow-[0_18px_50px_rgb(10_8_20/0.3)] ring-1 ring-black/5"
+          className="absolute bottom-[58px] right-0 max-h-[calc(100dvh-140px)] w-[min(330px,calc(100vw-24px))] animate-fade-up overflow-y-auto rounded-2xl bg-white p-2 shadow-[0_18px_50px_rgb(10_8_20/0.3)] ring-1 ring-black/5"
         >
           <div className="flex items-center justify-between px-3 pb-1 pt-2">
             <p className="font-spartan text-[13px] font-semibold uppercase tracking-[0.08em] text-pc-green-mid">
@@ -132,11 +135,12 @@ export function HelpButton() {
         type="button"
         aria-expanded={open}
         aria-haspopup="dialog"
+        aria-label="Ajuda / Tutorial"
         onClick={() => setOpen((value) => !value)}
-        className="flex h-12 items-center gap-2 rounded-full bg-pc-purple pl-3.5 pr-4 font-spartan text-[15px] font-semibold text-white shadow-[0_10px_28px_rgb(30_15_50/0.35)] hover:bg-[#4d3870]"
+        className="flex size-12 items-center justify-center gap-2 rounded-full bg-pc-purple font-spartan text-[15px] font-semibold text-white shadow-[0_10px_28px_rgb(30_15_50/0.35)] ring-2 ring-white/70 hover:bg-[#4d3870] sm:h-12 sm:w-auto sm:pl-3.5 sm:pr-4 sm:ring-0"
       >
-        <CircleQuestionMark size={21} aria-hidden="true" />
-        Ajuda / Tutorial
+        <CircleQuestionMark size={22} aria-hidden="true" />
+        <span className="hidden sm:inline">Ajuda / Tutorial</span>
       </button>
     </div>
   )

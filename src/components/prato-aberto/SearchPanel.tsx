@@ -9,6 +9,9 @@ import { AnnotationBadge } from '../demo/AnnotationBadge'
 import { DemoNote } from '../demo/DemoNote'
 import { CancelIcon, EditIcon } from './icons'
 
+/** Com mouse, o campo já começa focado. No celular, o teclado só abre quando a pessoa toca no campo. */
+const hasFinePointer = () => window.matchMedia?.('(pointer: fine)').matches ?? true
+
 /** Busca de escolas — reconstrução do slide 12. */
 export function SearchPanel() {
   const navigate = useNavigate()
@@ -24,7 +27,7 @@ export function SearchPanel() {
   }, [query])
 
   useEffect(() => {
-    inputRef.current?.focus({ preventScroll: true })
+    if (hasFinePointer()) inputRef.current?.focus({ preventScroll: true })
   }, [])
 
   const term = debounced.trim()
@@ -143,7 +146,7 @@ export function SearchPanel() {
                 className="mt-2 font-medium text-pa-button underline underline-offset-2 hover:text-pa-purple-deep"
                 onClick={() => {
                   setQuery(DEMO_QUERY)
-                  inputRef.current?.focus()
+                  if (hasFinePointer()) inputRef.current?.focus()
                 }}
               >
                 Pesquisar “{DEMO_QUERY}”

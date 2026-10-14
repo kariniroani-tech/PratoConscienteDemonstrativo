@@ -27,8 +27,13 @@ export interface TourStep {
   kind: Kind
   title: string
   body: string
+  /** Texto curto para celulares (a caixa do tutorial ocupa a parte de baixo da tela). */
+  mobileBody: string
+  /** No celular, começa minimizada: etapas de leitura em que o conteúdo da tela é o principal. */
+  mobileStartCollapsed?: boolean
   /** Texto exibido depois que a ação da etapa foi concluída. */
   doneBody?: string
+  mobileDoneBody?: string
   /** Valor do atributo data-tour do elemento destacado. */
   target: string
   route: string
@@ -78,6 +83,7 @@ export const TOUR_STEPS: TourStep[] = [
     kind: 'existente',
     title: 'Conhecer o Prato Aberto',
     body: 'Esta é a tela inicial do Prato Aberto, serviço que já existe. Nele, as famílias encontram a escola e consultam as refeições oferecidas na Rede Municipal de Ensino.',
+    mobileBody: 'O Prato Aberto já existe: nele, as famílias encontram a escola e consultam as refeições servidas.',
     target: 'pa-intro',
     route: ROUTES.home,
     placement: 'right',
@@ -88,6 +94,7 @@ export const TOUR_STEPS: TourStep[] = [
     kind: 'existente',
     title: 'Encontrar uma escola',
     body: 'O Prato Aberto permite que as famílias encontrem a escola e consultem as refeições oferecidas. Clique em “Encontre sua escola” para começar.',
+    mobileBody: 'Toque em “Encontre sua escola” para começar.',
     target: 'pa-find-school',
     route: ROUTES.home,
     placement: 'right',
@@ -104,6 +111,7 @@ export const TOUR_STEPS: TourStep[] = [
     kind: 'existente',
     title: 'Selecionar a unidade',
     body: 'Pesquise pelo nome da unidade escolar. Para esta demonstração, selecione a escola indicada: EMEI FELIPE MESTRE JOU (TERC.).',
+    mobileBody: 'Digite o nome da escola e toque em EMEI FELIPE MESTRE JOU (TERC.).',
     target: 'pa-search',
     route: ROUTES.search,
     placement: 'right',
@@ -131,6 +139,7 @@ export const TOUR_STEPS: TourStep[] = [
     kind: 'existente',
     title: 'Escolher a data',
     body: 'Escolha a data em que deseja consultar a alimentação oferecida na escola. Para seguir a apresentação, toque no dia 14 de outubro.',
+    mobileBody: 'Escolha a data do cardápio. Para seguir a apresentação, toque no dia 14.',
     target: 'pa-calendar',
     route: SCHOOL_ROUTE,
     placement: 'right',
@@ -151,8 +160,10 @@ export const TOUR_STEPS: TourStep[] = [
     kind: 'existente',
     title: 'Consultar o cardápio',
     body: 'Toque em “Todas as idades” para abrir o cardápio publicado para o dia.',
+    mobileBody: 'Toque em “Todas as idades” para ver as refeições do dia.',
     doneBody:
       'Aqui a família pode visualizar as refeições planejadas e consultar as informações disponíveis sobre a alimentação escolar, como o link “Informações nutricionais”.',
+    mobileDoneBody: 'Aqui a família vê as refeições planejadas e as informações sobre a alimentação escolar.',
     target: 'pa-menu',
     route: SCHOOL_ROUTE,
     placement: 'left',
@@ -173,6 +184,7 @@ export const TOUR_STEPS: TourStep[] = [
     kind: 'proposta',
     title: 'Conhecer o Prato Consciente',
     body: 'Até aqui, tudo já existe. Esta é a proposta Prato Consciente: além de consultar o cardápio, a família poderá compartilhar suas percepções sobre a alimentação escolar. Toque em “Prato Consciente”.',
+    mobileBody: 'Agora, a proposta: além de consultar, a família poderá contar como foi a alimentação. Toque em “Prato Consciente”.',
     target: 'pc-accordion',
     route: SCHOOL_ROUTE,
     placement: 'left',
@@ -189,6 +201,7 @@ export const TOUR_STEPS: TourStep[] = [
     kind: 'proposta',
     title: 'Selecionar a classe',
     body: 'Selecione a classe do aluno. A proposta não pede o nome da criança: a classe basta para relacionar o relato ao cardápio servido.',
+    mobileBody: 'Escolha a classe do aluno — sem nome nem dados pessoais da criança.',
     target: 'pc-classe',
     route: SCHOOL_ROUTE,
     placement: 'left',
@@ -209,6 +222,9 @@ export const TOUR_STEPS: TourStep[] = [
     kind: 'proposta',
     title: 'Escrever e enviar um relato',
     body: 'Escreva um relato fictício — por exemplo, que a criança não conhecia um alimento ou que ele não faz parte dos hábitos da família — e toque em “Enviar Relato”.',
+    mobileBody: 'Escreva um relato fictício (ou toque num exemplo) e depois em “Enviar Relato”.',
+    // Começa minimizada para o formulário inteiro (e o botão de envio) ficar à vista.
+    mobileStartCollapsed: true,
     target: 'pc-relato',
     route: SCHOOL_ROUTE,
     placement: 'left',
@@ -237,6 +253,8 @@ export const TOUR_STEPS: TourStep[] = [
     kind: 'proposta',
     title: 'Visualizar a confirmação',
     body: 'A família recebe a confirmação com o resumo do relato. Nesta demonstração, nada foi enviado à Prefeitura: o relato ficou salvo apenas neste navegador.',
+    mobileBody: 'A família vê a confirmação. Nada foi enviado à Prefeitura: o relato fica só neste aparelho.',
+    mobileStartCollapsed: true,
     target: 'pc-confirmacao',
     route: SCHOOL_ROUTE,
     placement: 'left',
@@ -248,6 +266,7 @@ export const TOUR_STEPS: TourStep[] = [
     kind: 'simulacao',
     title: 'Entender o caminho do relato',
     body: 'Toque em “Entenda o que acontece com seu relato” para ver como os relatos poderiam apoiar a gestão pública.',
+    mobileBody: 'Toque em “Entenda o que acontece com seu relato”.',
     target: 'pc-entenda',
     route: SCHOOL_ROUTE,
     placement: 'left',
@@ -265,6 +284,8 @@ export const TOUR_STEPS: TourStep[] = [
     kind: 'simulacao',
     title: 'Da escuta à ação',
     body: 'Na proposta, os relatos são sistematizados; a CODAE identifica padrões e os cruza com o teste de aceitabilidade; a equipe de EAN planeja ações, que depois são acompanhadas. Toque nas etapas para ver cada explicação.',
+    mobileBody: 'Veja como os relatos virariam ações na gestão pública: toque nas etapas do fluxo.',
+    mobileStartCollapsed: true,
     target: 'gestao-fluxo',
     route: ROUTES.gestao,
     placement: 'bottom',

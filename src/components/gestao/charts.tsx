@@ -28,10 +28,10 @@ function TableToggle({ open, onToggle, controls }: { open: boolean; onToggle: ()
 
 export function StatTile({ label, value, note }: { label: string; value: string; note: string }) {
   return (
-    <div className="rounded-2xl border border-[#ece8dc] bg-white px-5 py-4">
-      <p className="font-roboto text-[14px] text-[#5b625e]">{label}</p>
-      <p className="mt-1 font-spartan text-[36px] font-semibold leading-none text-pc-ink">{value}</p>
-      <p className="mt-2 font-roboto text-[12.5px] text-[#8a8478]">{note}</p>
+    <div className="rounded-2xl border border-[#ece8dc] bg-white px-3.5 py-3 sm:px-5 sm:py-4">
+      <p className="font-roboto text-[13px] leading-snug text-[#5b625e] sm:text-[14px]">{label}</p>
+      <p className="mt-1 font-spartan text-[30px] font-semibold leading-none text-pc-ink sm:text-[36px]">{value}</p>
+      <p className="mt-1.5 font-roboto text-[12px] leading-snug text-[#8a8478] sm:mt-2 sm:text-[12.5px]">{note}</p>
     </div>
   )
 }

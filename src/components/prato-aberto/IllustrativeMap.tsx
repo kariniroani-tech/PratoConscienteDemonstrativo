@@ -236,7 +236,7 @@ export function IllustrativeMap({ view }: IllustrativeMapProps) {
           />
         </div>
       </div>
-      <p className="pointer-events-none absolute bottom-2 right-2 rounded-full bg-black/45 px-2.5 py-1 font-roboto text-[11px] text-white/85">
+      <p className="pointer-events-none absolute bottom-2 left-2 rounded-full bg-black/45 px-2.5 py-1 font-roboto text-[11px] text-white/85 md:left-auto md:right-2">
         Mapa ilustrativo — não representa dados reais
       </p>
     </div>

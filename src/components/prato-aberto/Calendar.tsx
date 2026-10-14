@@ -52,7 +52,7 @@ export function Calendar() {
   }
 
   return (
-    <div data-tour="pa-calendar" className="px-4 pb-8 pt-6 md:pt-7">
+    <div data-tour="pa-calendar" className="px-4 pb-5 pt-4 md:pb-8 md:pt-7">
       <div className="mx-auto flex w-[244px] items-center justify-between">
         <button
           type="button"
@@ -80,11 +80,11 @@ export function Calendar() {
           type="button"
           onClick={() => selectDate(previousDay)}
           aria-label={`Dia anterior: ${formatLong(previousDay)}`}
-          className="w-[46px] text-center font-roboto text-[40px] leading-none text-pa-violet-soft transition-colors hover:text-[#c9b2da]"
+          className="min-h-[44px] w-[46px] text-center font-roboto text-[32px] leading-none text-pa-violet-soft transition-colors hover:text-[#c9b2da] md:text-[40px]"
         >
           {parseISO(previousDay).d}
         </button>
-        <p className="min-w-[96px] text-center font-roboto text-[84px] leading-none tracking-[-0.02em] text-pa-violet">
+        <p className="min-w-[80px] text-center font-roboto text-[64px] leading-none tracking-[-0.02em] text-pa-violet md:min-w-[96px] md:text-[84px]">
           <span className="sr-only">Data selecionada: </span>
           {parseISO(selectedDate).d}
         </p>
@@ -92,18 +92,28 @@ export function Calendar() {
           type="button"
           onClick={() => selectDate(nextDay)}
           aria-label={`Dia seguinte: ${formatLong(nextDay)}`}
-          className="w-[46px] text-center font-roboto text-[40px] leading-none text-pa-violet-soft transition-colors hover:text-[#c9b2da]"
+          className="min-h-[44px] w-[46px] text-center font-roboto text-[32px] leading-none text-pa-violet-soft transition-colors hover:text-[#c9b2da] md:text-[40px]"
         >
           {parseISO(nextDay).d}
         </button>
       </div>
-      <p className="mt-3 text-center font-roboto text-[12px] text-pa-muted">{formatCalendarCaption(selectedDate)}</p>
+      <p className="mt-2 text-center font-roboto text-[12px] text-pa-muted md:mt-3">
+        {formatCalendarCaption(selectedDate)}
+      </p>
 
-      <table ref={gridRef} aria-label={`Calendário de ${monthLabel(visibleMonth)}`} className="mx-auto mt-9 border-separate border-spacing-0">
+      <table
+        ref={gridRef}
+        aria-label={`Calendário de ${monthLabel(visibleMonth)}`}
+        className="mx-auto mt-4 border-separate border-spacing-0 md:mt-9"
+      >
         <thead>
           <tr>
             {DIAS_CURTOS.map((dia) => (
-              <th key={dia} scope="col" className="w-[35.5px] pb-2.5 text-center font-roboto text-[15px] font-normal text-pa-muted">
+              <th
+                key={dia}
+                scope="col"
+                className="w-[44px] pb-1.5 text-center font-roboto text-[14px] font-normal text-pa-muted sm:w-[35.5px] md:pb-2.5 md:text-[15px]"
+              >
                 {dia}
               </th>
             ))}
@@ -127,7 +137,7 @@ export function Calendar() {
                       }}
                       onKeyDown={(event) => onDayKeyDown(event, iso)}
                       className={cn(
-                        'relative mx-auto grid h-[31px] w-[33px] place-items-center rounded-md font-roboto text-[14.5px] transition-colors hover:bg-[#f3edf7]',
+                        'relative mx-auto grid h-[36px] w-[40px] place-items-center rounded-md font-roboto text-[15px] transition-colors hover:bg-[#f3edf7] sm:h-[31px] sm:w-[33px] sm:text-[14.5px]',
                         iso === selectedDate ? 'text-pa-violet' : 'text-pa-muted',
                       )}
                     >
